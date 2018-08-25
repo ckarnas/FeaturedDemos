@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CKHaines, PhD</title>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!--END OF IMPORT-->
+
+
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--<title>OIS</title>-->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      background-color: unset;
+    }
+
+    /* table {
+    border-collapse: collapse;
+    width: 100%;
+} */
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tbody>tr:nth-child(even) {
+      background-color: #f2f2f2 !important
+    }
+
+    tbody>tr:nth-child(odd) {
+      background-color: #fff !important
+    }
+
+    /* th {
+  background-color: #2f3439;
+  color: white;
+} */
+  </style>
+</head>
+
+<body>
+
+<!-- The sample navigation. We can use it or use something nicer looking-->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+  
+          <a class="navbar-brand" href="/">Home</a>
+        </div>
+  
+          <ul class="nav navbar-nav navbar-right">
+
+              <!--<li class="dropdown">-->
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Options</a>
+                  <ul class="dropdown-menu">
+
+            <li><a href="/maps">Shooting Maps</a></li>
+  
+            <li><a href="/OIS_page/send">Shooting Narratives</a></li>
+            <li><a href="/college">College Analytics</a></li>
+            <li><a href="/about">About Colleen</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div> 
+      
+      <!-- /.container-fluid -->
+    </nav>
+  
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>
+        Featured Projects
+        <!--<span >2018</span>-->
+      </h1>
+      <h3>Colleen Karnas-Haines, PhD</h3>
+      <p></p>
+    </div>
+    <div class="container">
+            <div class="row">
+                    <div class="col-md-6">
+                        <div class="company">
+                          <h3>Officer Involved Shootings in Charlotte</h3>
+                          <a href="/OIS_page/send"><p style="color:rgb(0, 174, 255)">Go straight to the page.</p></a>
+                        </div>
+                        <div class="myImage">
+                                <img src="/static/images/gun.jpg" alt="generic gun pic" width=100%>
+                                        
+                            </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class-"company">
+                          <h3>Map Visualizations and Interactive User Interface</h3>
+                          <ul>
+                            <li>Google Map Plotter</li>
+                            <li>API calls</li>
+                            <li>Python</li>
+                            <li>Flask</li>
+                            <li>Pandas dataframes</li>
+                            <li>numPy</li>
+                            <li>json</li>
+                            <li>MySQL</li>
+                            <li>html, bootstrap, css</li>
+                          </ul>
+                      </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                    <hr>
+                  </div>
+                  </div>
+
+                  <div class="row">
+
+                      <div class="col-md-6">
+                            <div class="company">
+                                <h3>College Analytics</h3>
+                                <a href="/college"><p style="color:rgb(0, 174, 255)">Go straight to the page.</p></a>
+                            </div>
+                            <div class="myImage">
+                                <img src="/static/images/campus.jpg" alt="College Campus" width=100%>
+                                        
+                            </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="company">
+                          <h3>Predictive Modeling and Statistical Analysis</h3>
+                          <ul>
+                            <li>Machine Learning
+                              <ul>
+                                <li>KNN, nearest neighbor analysis</li>
+                                <li>Linear regression model training</li>
+                                <li>Multilinear regression model training</li>
+                              </ul>
+                            </li>
+                            <li>Tableau</li>
+                            <li>Python</li>
+                            <li>Scikit-learn</li>
+                            <li>Html, bootstrap, css</li>
+                            <li>Pandas dataframes</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>   
+    </div>
+    </div>
+    <footer>
+      <hr>
+        <p>Site created by: Colleen Karnas-Haines, PhD<div align=right >Copyright 2018</div></p>
+        <p align=center>Contact via LinkedIn: <a href="https://www.linkedin.com/in/colleen-karnas-haines-phd/"><p style="color:rgb(0, 174, 255)">
+        Colleen's Profile</p></a>.</p>
+      </footer>

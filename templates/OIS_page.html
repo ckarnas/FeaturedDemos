@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Officer-Involved Shootings, Charlotte</title>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!--END OF IMPORT-->
+
+
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--<title>OIS</title>-->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      background-color: unset;
+    }
+
+    /* table {
+    border-collapse: collapse;
+    width: 100%;
+} */
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tbody>tr:nth-child(even) {
+      background-color: #f2f2f2 !important
+    }
+
+    tbody>tr:nth-child(odd) {
+      background-color: #fff !important
+    }
+
+    /* th {
+  background-color: #2f3439;
+  color: white;
+} */
+  </style>
+</head>
+
+<body>
+
+
+<!-- The sample navigation. We can use it or use something nicer looking-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+
+        <a class="navbar-brand" href="/">Home</a>
+      </div>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <!--<li class="dropdown">-->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Options</a>
+                <ul class="dropdown-menu">
+
+          <li><a href="/maps">Shooting Maps</a></li>
+
+          <li><a href="/OIS_page/send">Shooting Narratives</a></li>
+          <li><a href="/college">College Analytics</a></li>
+          <li><a href="/about">About Colleen</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div> 
+    
+    <!-- /.container-fluid -->
+  </nav>
+  
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>
+        Officer-Involved Shooting Study
+        <!--<span >2018</span>-->
+      </h1>
+      
+      <p></p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            Project Details
+          </div>
+        </div>
+        <div class="company">
+          This analysis retrieves and visualizes data from Charlotte Mecklenburg Police Department's public database. The database
+          starts in 2005 and continues to the present. <a href="/maps"><p style="color:#27332F">Shooting map here.</p></a>
+
+        </div>
+        <hr>
+        <div>   </div>
+        <div class="company">
+            The information used for both the <font color="green"><b>Google Map Plotter</b></font> maps and the interactive user interface is retrieved via 
+            <font color="green"><b>API calls</b></font> to ensure the most recent
+            data. On this page, we give the user the opportunity to look up a shooting incident closest to a user-defined 
+            address. Upon entering the address, the <font color="green"><b>python</b></font> program calls Google's 
+            <font color="green"><b>geocoding API</b></font> to convert the address to a set of longitude and latitude
+            coordinates. Using the <font color="orange">Haversine formula</font>, which takes into account the spherical 
+            nature of the Earth, we can loop through all the shooting locations and find the closest one.
+
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            Uptown Charlotte
+          </div>
+        </div>
+
+        <img src="/static/Charlotte_Skyline.jpg" alt="Charlotte Skyline" width=100%>
+      </div>
+    </div>
+
+<hr>
+
+    <div class="container">
+
+      <div class="row">
+        <div class=" col-md-12">
+          <div class="jumbotron">
+            <p>Was there an officer-involved shooting near you?</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="company">
+                Please enter the address you are interested in. No special characters. For example,
+                if you want to look up 320 E. 9th St., Charlotte, NC, please only enter: 320 E 9th St Charlotte NC.
+              </div>
+            </div>
+            <div class="col-md-6">
+              <form method="POST" action="/OIS_page/send" role="form" , name="petform">
+                <div class="form-group">
+                  <label for="inputName">Enter the address :</label>
+                  <input type="text" class="form-control" id="inputName" name="findAddy" placeholder="Enter address here">
+                </div>
+    
+                <input type="submit" value="submit" class="btn btn-default">
+              </form>
+            </div>
+          </div>       
+      </div>
+      <!--<div class="row">
+        <div class="col-md-6">
+          <div class="company">
+            Please enter the number of the address you are interested in. Only the number. For example,
+            if you want to look up 320 E 9th St, please only enter: 320.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <form method="POST" action="/send" role="form" , name="petform">
+            <div class="form-group">
+              <label for="inputName">Enter the address number:</label>
+              <input type="text" class="form-control" id="inputNum" name="findNum" placeholder="Num">
+            </div>
+
+            <input type="submit" value="submit" class="btn btn-default">
+          </form>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+            <div class="company">
+              Please enter the street name of the address you are interested in. For example,
+              if you want to look up 320 E 9th St, please  enter: E 9th St.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <form method="POST" action="/send" role="form" , name="petform">
+              <div class="form-group">
+                <label for="inputName">Enter the street name:</label>
+                <input type="text" class="form-control" id="inputSt" name="findSt" placeholder="St">
+              </div>
+  
+              <input type="submit" value="submit" class="btn btn-default">
+            </form>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="company">
+                Please enter the city.
+              </div>
+            </div>
+            <div class="col-md-6">
+              <form method="POST" action="/send" role="form" , name="petform">
+                <div class="form-group">
+                  <label for="inputName">ECityr:</label>
+                  <input type="text" class="form-control" id="inputCity" name="findCity" placeholder="City">
+                </div>
+    
+                <input type="submit" value="submit" class="btn btn-default">
+              </form>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                <div class="company">
+                  Please enter the state abreviation. For example, North Carolina is NC.
+                </div>
+              </div>
+              <div class="col-md-6">
+                <form method="POST" action="/send" role="form" , name="petform">
+                  <div class="form-group">
+                    <label for="inputName">Enter the state abbreviation:</label>
+                    <input type="text" class="form-control" id="inputStt" name="findStt" placeholder="Stt">
+                  </div>
+      
+                  <input type="submit" value="submit" class="btn btn-default">
+                </form>
+              </div>
+            </div>-->
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <hr>
+          <p style="color:#27332F" class="result_text">{{intro}}</p>
+          <p style="color:#27332F" class="result_text">{{description}}</p>
+          <!--<p class="result_text">In {{yr}} there was a shooting at {{loc_of_shooting}}, the closest officer-involved shooting
+            to your requested address: {{address}}</p>
+          <p class="result_text">The following describes the incident {{narrative}}</p>-->
+
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+
+
+      </div>
+
+    </div>
+
+
+
+    <!--<script src="../plots.js"></script>-->
+</body>
+
+</html>

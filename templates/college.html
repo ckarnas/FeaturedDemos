@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>College Analytics</title>
+      
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+      
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+      
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+          crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <!--END OF IMPORT-->
+      
+      
+      
+      
+      
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--<title>OIS</title>-->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <style>
+          body {
+            background-color: unset;
+          }
+      
+          /* table {
+          border-collapse: collapse;
+          width: 100%;
+      } */
+      
+          th,
+          td {
+            text-align: left;
+            padding: 8px;
+          }
+      
+          tbody>tr:nth-child(even) {
+            background-color: #f2f2f2 !important
+          }
+      
+          tbody>tr:nth-child(odd) {
+            background-color: #fff !important
+          }
+      
+          /* th {
+        background-color: #2f3439;
+        color: white;
+      } */
+        </style>
+      </head>
+
+<body>
+
+ <!-- The sample navigation. We can use it or use something nicer looking-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+
+        <a class="navbar-brand" href="/">Home</a>
+      </div>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <!--<li class="dropdown">-->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Options</a>
+                <ul class="dropdown-menu">
+
+          <li><a href="/maps">Shooting Maps</a></li>
+
+          <li><a href="/OIS_page/send">Shooting Narratives</a></li>
+          <li><a href="/college">College Analytics</a></li>
+          <li><a href="/about">About Colleen</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div> 
+    
+    <!-- /.container-fluid -->
+  </nav>
+
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>
+        College Analytics
+        <!--<span id="report-date" style="float: right;">2018</span>-->
+      </h1>
+      <h3>Big Data Predictive Analytics and Exploratory Statistical Analysis</h3>
+      <h3>Colleen Karnas-Haines, PhD</h3>
+      <p></p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+          <!--<div class="panel panel-default">
+            <div class="panel-body">
+              Explore
+            </div>
+          </div>-->
+          <div class="myImage">
+            <img src="/static/images/campus.jpg" alt="College Campus" width=100%>
+            <!--<div id="plot"></div>-->
+          </div>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            Project Profile
+          </div>
+        </div>
+        <div class="company">
+          <p><font color="grey">
+          This project looks at data from four-year colleges collected from the Integrated Postsecondary
+          Education Data System (ipeds) </font><a href="https://nces.ed.gov/ipeds/"> <font color="teal">found here</font> </a><font color="grey">
+            and the US Department of Education's
+          College Scorecard </font><a href="https://collegescorecard.ed.gov/"><font color="teal">found here</font>.</a></p>
+          <p><font color="grey">With seven thousand colleges and hundreds of variables collected over decades, 
+            this Big Data project required extensive data cleaning and data exploration. 
+            Before any data cleaning could take place, I had to learn how each variable was defined. For example, 
+            if a school reported a 60% graduation rate, does that mean 60% of their students 
+            graduated in 4 yrs? 6 yrs? At some undefined point in their lives? 
+          </font></p>
+          <p><font color="grey">To successfully predict trends and outcomes, the sample colleges
+            need to be alike in type--similar accreditation, degree-types, and federal Title IV funding eligibility.  
+            This study is limited to colleges and universities in 
+            the United States that primarily
+             offer baccalaureate degrees, with or without additional graduate degrees. 
+             Two-year community colleges, trade schools, 
+             and gradute degree-only schools, such as medical schools, were omitted to ensure the predictive analysis
+             was meaningful. Public, private non profit, and private for profit colleges were all included in the analysis. 
+            Analyzing the data by a college's tax status proved enlightening.</font>
+          </p>
+        </div>
+  
+      </div>
+    </div>
+
+
+<!--This is the explanation of different colleges-->
+    <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              Public
+            </div>
+          </div>
+          <div>
+            <p>
+              Public colleges use both state funds and tuition funds to cover education costs and they do not pay taxes on their profits. 
+              While there are other sources of income such as endowments and grants, these other sources of income do not affect the 
+              classification of the college.
+            </p>
+          </div>
+          <div class="myImage">
+            <img src="/static/images/Pub_Rev_tui.jpg" alt="Public College Revenue" width=100%>
+            <!--<div id="plot"></div>-->
+          </div>
+        </div>
+
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                Private, non profit
+              </div>
+            </div>
+            <div>
+                <p>
+                  Private non profit colleges do not receive state funding and use tuition funds to cover education costs. 
+                  They do not pay taxes on their income. While there are other sources of income such as endowments and grants, 
+                  these other sources of income do not affect the classification of the college.
+                </p>
+              </div>
+            <div class="myImage">
+              <img src="/static/images/PNP_Rev_tui.jpg" alt="College Campus" width=100%>
+              <!--<div id="plot"></div>-->
+            </div>
+          </div>
+
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Private, for profit
+                </div>
+              </div>
+              <div>
+                  <p>
+                    Private for profit colleges do not receive state funding and use tuition funds to cover education costs. 
+                    They are required to pay taxes on their income. You can see in the below graph that private for profit colleges
+                    heavily rely on tuition dollars to support both their educational activities and their tax burden.
+                  </p>
+                </div>
+              <div class="myImage">
+                <img src="/static/images/PFP_Rev_tui.jpg" alt="College Campus" width=100%>
+                <!--<div id="plot"></div>-->
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+                <!--<div class="panel panel-default">
+                  <div class="panel-body">-->
+                    <hr width=20%>
+                    <h2 align=center>What makes a successful higher education institution?</h2>
+                    <hr width=20%>
+                    <!--Top ten in revenue. Top ten grad rate. Top ten post-grad salary.Top ten most selective-->
+                  <!--</div>-->
+                  </div>
+          </div>
+          <div class="row">
+              <div class="col-md-8">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    Predictions
+                    <!--Top ten in revenue. Top ten grad rate. Top ten post-grad salary.Top ten most selective-->
+                  </div>
+                </div>
+                <div>
+                  <p><font color="grey">
+                    <p>What makes a college successful? </p>
+                    <p>How do we find variables that will accurately predict success?</p>
+                    <p>Once we find variables that correlate to success metrics, can we make predictions?</p> 
+                    <hr>
+                    <p> Finding correlations between variables is a task not always suited to human logic. I did not always
+                      find correlations (enrollment measures and revenue, for example) where I thought they should be.
+                      Taking advantage of my <font color="green"><b> python programming</b></font> skills, I built
+                      a function that explores one dependent variable and loops through and runs a 
+                      <font color="orange"> linear regression analysis</font>on hundreds of independent variables. After calculating
+                      the <font color="orange">coefficient of determination, R^2</font> and <font color="orange">Mean Squared Error (MSE)</font>on each dependent/independent variable pair, 
+                      the function built a <font color="green"> <b>pandas dataframe</b></font> ordered by the R^2. Then the program took the top three R-squared variables, and combined 
+                    them into a <font color="orange">multivariable linear regression</font> to see if we increase the dependent/independent variables' correlation.</p>
+                  </font></p>
+                  <p><font color="grey">
+                    Additionally, I was interested in <font color="orange">predictive analytics</font>. Specifically, I wanted to know if one could predict
+                    if a college would increase or decrease their yearly revenue and enrollment figures. To investigate these questions I used 
+                    <font color="green"><b>scikit-learn's </b></font> KNN analysis. This <font color="green"><b>machine learning</b></font> technique is 
+                    commonly known as a <font color="orange">nearest neighbor analysis</font>. 
+                    Multiple variables are used to plot the given data in a multi-planed space. Then, the user can enter in unique data, 
+                    or in this case, data drawn from a specific college, and the computer analyzes the category of k-neighbors, k determined by 
+                    best results, to predict what category the user-entered school will fall in. Our categories were increasing revenue vs decreasing revenue
+                    and increasing enrollments vs decreasing enrollments.
+                    <p><a href="https://public.tableau.com/profile/c.karnas#!/vizhome/HigherEducationDataFinal/RevenuePredictions"><font color="black">Revenue Predictions</font></a></p>
+                    <p><a href="https://public.tableau.com/profile/c.karnas#!/vizhome/HigherEducationDataFinal/EnrollmentPredictions"><font color="black">Enrollment Predictions</font></a></p>
+                  
+                  </font></p>
+                </div>
+              </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                          <p style="color:#27332F">*</p>
+                      </div>
+                    </div>
+                    <div class="myImage">
+                      <img src="/static/images/Study.jpg" alt="Study Materials" width=100%>
+                      <!--<div id="plot"></div>-->
+                    </div>
+                  </div>
+
+          </div>
+
+
+
+
+    <div class="row">
+      <div class="col-md-12">
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  Let's further explore the data. Click on the graph to go to the <font color="green"><b>Tableau visualizations</b></font>.
+              </div>
+            </div>
+        
+        <a href="https://public.tableau.com/profile/c.karnas#!/vizhome/HigherEducationDataFinal/PublicColleges">
+          <img border="0" alt="Tableau for C Karnas" src="/static/images/Tableau Teaser.jpg" width=100%>
+          </a>
+      </div>
+    </div>
+</body>
+
+</html>
